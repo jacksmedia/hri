@@ -1,4 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template
+from flask_flatpages import FlatPages
+
+# auto-reload wen page changes; look for .md files
+FLATPAGES_AUTO_RELOAD = True
+FLATPAGES_EXTENSION = '.md'
 
 # Create our app object, use this page as our settings (will pick up DEBUG)
 app = Flask(__name__)
@@ -9,7 +14,14 @@ app.config.from_object(__name__)
 # We want Flask to allow no slashes after paths, bc they get turned into flat files
 app.url_map.strict_slashes = False
 
-# Creates route to our index page at root url, returns simple greeting
+# instance the static site
+pages = FlatPages(app)
+
+# Route to FlatPages @ root url; route any '.html' path
 @app.route("/")
-def index():
-    return "Hello, June 🐞"
+@app.route("/<path:path>.html")
+def page(path=None):
+    # look w FlatPages, or use "index" if no path
+    page = pages.get_or_404(path or 'index')
+    # render "page.html" w its metadata
+    return render_template("page.html", page=page title=page.meta['title'])

@@ -12,5 +12,5 @@ Includes python webapp archive files + golden record for NFTs rarity
 
 	pipenv run python freeze.py
 
-[Jacks.media](Jacks.media)
+[Jacks.media](https://jacks.media)
 
