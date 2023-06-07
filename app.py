@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_flatpages import FlatPages
+import json
 
 # auto-reload wen page changes; look for .md files
 FLATPAGES_AUTO_RELOAD = True
@@ -24,4 +25,8 @@ def page(path=None):
     # look w FlatPages, or use "index" if no path
     page = pages.get_or_404(path or 'index')
     # render "page.html" w its metadata
-    return render_template("page.html", page=page title=page.meta['title'])
+    # with open("merged.combey.csv") as f:
+    #     leet = json.load(f)
+    return render_template("page.html", 
+                                    page=page, 
+                                    title=page.meta['title'])

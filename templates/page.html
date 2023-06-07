@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/base.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="logo" aria-hidden="true"></a>
+        <a href="/" {% if page.path == "index" %}active{% endif %}>Home</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+      {% block content %}
+          <h1>{{ page.meta.description }}</h1>
+          {{ page.html|safe }}
+          <!-- <div>{{ leet }}</div> -->
+      {% endblock content %}
+      </article>
+    </main>
+  </body>
+</html>
