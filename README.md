@@ -1,9 +1,9 @@
-# hri-app
-HRI (holder ranking index) app for combased.io ComVerse NFT collections. 
+# hri-app 🙉🤖👽🧮🪄
+HRI (holder ranking index) webapp for combased.io ComVerse NFT collections, via Python Frozen Flask.
 
-Includes python webapp archive files + golden record for NFTs rarity
+Archive files + golden record for NFTs rarity also included.
 
-# built by:
+# 🚧🧾 built by:
 	pipenv --python 3.11 install flask frozen-flask flask-flatpages
 
 	export FLASK_DEBUG=True
@@ -12,5 +12,20 @@ Includes python webapp archive files + golden record for NFTs rarity
 
 	pipenv run python freeze.py
 
+# 🛠🏗️ how to run webapp, 1st time:
+	pipenv install -r requirements.txt
+	pipenv run flask run
+
+# 🚠 how to run webapp:
+	pipenv run flask run
+
+# 🎛️ how to run blockchain tools, 1st time:
+	pipenv install -r requirements.txt
+	source comverse.sh
+
+# 🎛️ how to run blockchain tools:
+	source comverse.sh
+
+MIT©, free to re-use. Courtesy of: 
 [Jacks.media](https://jacks.media)
 

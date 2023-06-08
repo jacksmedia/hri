@@ -12,19 +12,21 @@ def sum_and_count_values(csv_file):
 
     # Calculate the HRI
     for row in rows[1:]:
-        key = row[0]
-        value = int(row[1])
-        sum_counts[key][0] += value  # Sum
-        sum_counts[key][1] += 1      # Count aka Total Combots
-        # Do the Comverse special maths to calculate HRI
-        # 1. Divide the sum by count, get average
-        sum_counts[key][0] = sum_counts[key][0]/sum_counts[key][1] 
-        # 2. Divide average by 2x count
-        sum_counts[key][0] = sum_counts[key][0]/(sum_counts[key][1]*2)
-        # 3. if NFT count < 10, incur HRI balance penalty
-        if sum_counts[key][1] < 10:
-            sum_counts[key][0] = sum_counts[key][0] + (10 - sum_counts[key][1])
-
+        try:
+            key = row[1] # not the same as the Combeys! Stay vigilant
+            value = int(row[2]) # ditto
+            sum_counts[key][0] += value  # Sum
+            sum_counts[key][1] += 1      # Count aka Total Combots
+            # Do the Comverse special maths to calculate HRI
+            # 1. Divide the sum by count, get average
+            sum_counts[key][0] = sum_counts[key][0]/sum_counts[key][1] 
+            # 2. Divide average by 2x count
+            sum_counts[key][0] = sum_counts[key][0]/(sum_counts[key][1]*2)
+            # 3. if NFT count < 10, incur HRI balance penalty
+            if sum_counts[key][1] < 10:
+                sum_counts[key][0] = sum_counts[key][0] + (10 - sum_counts[key][1])
+        except ValueError:
+            continue
     # Create the new CSV file with three columns
     new_csv_file = 'HRI_combots.csv'
     with open(new_csv_file, 'w', newline='') as file:

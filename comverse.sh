@@ -8,9 +8,9 @@ echo edition,owner > table-header.csv && cat COMBEYS-bc640d.csv >> table-header.
 sleep 2 # superstition ngl >_<
 echo edition,owner > table-header.csv && cat COMBOTS-aa4150.csv >> table-header.csv && mv table-header.csv ./COMBOTS-aa4150.csv
 sleep 2 # superstition ngl >_<
-python3 trim-combey-from-b.py --input COMBEYS-bc640d.csv
+python3 prune-x-from-col-y.py --input COMBEYS-bc640d.csv --prune 'Combey ' --col 0
 sleep 2 # superstition ngl >_<
-python3 trim-combot-from-b.py --input COMBOTS-aa4150.csv
+python3 prune-x-from-col-y.py --input COMBOTS-aa4150.csv --prune 'Combot #' --col 0
 sleep 2 # superstition ngl >_<
 python3 find-combey-ranks.py  # creates combeys-holders-ranks.csv
 sleep 2 # superstition ngl >_<
