@@ -1,5 +1,5 @@
-# python3 sort-by-col-a.py --input combeys-holders-ranks.csv
-# python3 sort-by-col-a.py --input combots-holders-ranks.csv
+# python3 sort-by-col-b.py --input COMBEYS-bc640d-wallet-per-NFT.csv
+# python3 sort-by-col-b.py --input COMBOTS-aa4150-wallet-per-NFT.csv
 import csv
 import argparse
 

@@ -10,19 +10,20 @@ def sum_and_count_values(csv_file):
     # Create a dictionary to store the sums and counts
     sum_counts = defaultdict(lambda: [0, 0])  # [Sum, Count]
 
-    # Calculate the sums and counts
+    # Calculate the HRI
     for row in rows[1:]:
-        key = row[3] # owner is the key value
-        ivalue = int(row[2], base=10) # rarity rank needs converting
-        sum_counts[key][0] += value  # Sum of ranks
-        sum_counts[key][1] += 1      # Count aka Total Combeys
+        key = row[1] # owner is the key value
+        value = int(row[2]) # the rank in the NFT collection
+        sum_counts[key][0] += value  # Sum = running total of all rank values
+        sum_counts[key][1] += 1      # Count aka Total Comboeys: is assigned to each owner bc that's our primary key
         # Do the Comverse special maths to calculate HRI
         # 1. Divide the Sum by Count, get Average
         sum_counts[key][0] = sum_counts[key][0]/sum_counts[key][1]
         # 2. Divide Average by 2x count
         sum_counts[key][0] = sum_counts[key][0]/(sum_counts[key][1]*2)
         # 3. if NFT count < 10, incur HRI balance penalty
-        if sum_counts[key][1] < 10 : sum_counts[key][0] = sum_counts[key][0] + 10 - sum_counts[key][1]
+        if sum_counts[key][1] < 10:
+            sum_counts[key][0] = sum_counts[key][0] + (10 - sum_counts[key][1])
 
     # Create the new CSV file with three columns
     new_csv_file = 'HRI_combeys.csv'
@@ -35,6 +36,6 @@ def sum_and_count_values(csv_file):
     return new_csv_file
 
 # Usage example
-csv_file = './merged-combey.csv'
+csv_file = './combeys-holders-ranks.csv'
 new_csv_file_path = sum_and_count_values(csv_file)
 print(f"New CSV file created: {new_csv_file_path}")

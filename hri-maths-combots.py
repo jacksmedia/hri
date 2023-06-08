@@ -10,7 +10,7 @@ def sum_and_count_values(csv_file):
     # Create a dictionary to store the sums and counts
     sum_counts = defaultdict(lambda: [0, 0])  # [Sum, Count]
 
-    # Calculate the sums and counts
+    # Calculate the HRI
     for row in rows[1:]:
         key = row[0]
         value = int(row[1])
@@ -22,7 +22,8 @@ def sum_and_count_values(csv_file):
         # 2. Divide average by 2x count
         sum_counts[key][0] = sum_counts[key][0]/(sum_counts[key][1]*2)
         # 3. if NFT count < 10, incur HRI balance penalty
-        if sum_counts[key][1] < 10 : sum_counts[key][0] = sum_counts[key][0] + 10 - sum_counts[key][1]
+        if sum_counts[key][1] < 10:
+            sum_counts[key][0] = sum_counts[key][0] + (10 - sum_counts[key][1])
 
     # Create the new CSV file with three columns
     new_csv_file = 'HRI_combots.csv'
@@ -36,6 +37,6 @@ def sum_and_count_values(csv_file):
     return new_csv_file
 
 # Usage example
-csv_file = './merged-combot.csv'
+csv_file = './combots-holders-ranks.csv'
 new_csv_file_path = sum_and_count_values(csv_file)
 print(f"New CSV file created: {new_csv_file_path}")

@@ -1,4 +1,5 @@
-# python3 trim-combot-from-a.py --input COMBOTS-aa4150.csv
+# python3 swap-cols.py --input COMBEYS-bc640d.csv
+# python3 swap-cols.py --input COMBOTS-aa4150.csv
 import csv
 import argparse
 
@@ -8,24 +9,23 @@ parser.add_argument("--input", help="Input file", required=True)
 args = parser.parse_args()
 csv_file = args.input
 
-excisee = 'Combot #' # what's getting removed from the csv
-
-def trim_column(csv_file):
+def swap_columns(csv_file):
     # Read the CSV file into a list of rows
     with open(csv_file, 'r') as file:
         reader = csv.reader(file)
         rows = list(reader)
 
-    # trim "Combot #" from values in Column B
-    for row in rows[0:]:
-       row[0] = row[0].replace(excisee,'')
+    data = rows[0:] # every row in the csv file
 
-    # Write the trimmed rows back to the CSV file
+    # Swap the values in columns A and B
+    swapped_data = [[row[1], row[0]] for row in data]
+
+    # Write  swapped rows back into the csv file
     with open(csv_file, 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerows(rows)
+        writer.writerows(swapped_data)
 
-trim_column(csv_file)
+swap_columns(csv_file)
 print(f'\n----- Trust J4cks & DYOR fren -----\n')
-print(f'Successfully trimmed {excisee} from Column B in {csv_file} .')
+print(f'Successfully swapped Columns A & B in {csv_file} .')
 print(f'\n----- Thank you for using Jacks.media scripts -----\n')
